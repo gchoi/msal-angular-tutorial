@@ -1,0 +1,70 @@
+<mat-toolbar color="primary">
+	<a class="title" href="/">{{ title }}</a>
+
+	<div class="toolbar-spacer"></div>
+
+	<!-- <a mat-button [routerLink]="['profile']">Profile</a> -->
+
+	<button mat-raised-button *ngIf="!loginDisplay" (click)="login()">Login</button>
+	<button mat-raised-button *ngIf="loginDisplay" (click)="logout()">Logout</button>
+</mat-toolbar>
+<div class="container">
+	<!--This is to avoid reload during acquireTokenSilent() because of hidden iframe -->
+	<router-outlet *ngIf="!isIframe"></router-outlet>
+</div>
+<br /><hr />
+
+<div *ngIf="loginDisplay">
+	<table>
+		<tr>
+		</tr>
+		<tr>
+			<td>USER PROFILE:</td>
+			<td>
+				<ul>
+          <li>User Name: {{ this.userName }}</li>
+          <li>User ID: {{ this.userId }}</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+	<br /><hr />
+</div>
+
+<!--
+<div *ngIf="loginDisplay">
+	<button class="btn" (click)="getSpeakers()">GET SPEAKERS</button>
+	<table *ngIf="loginDisplay" border="1">
+		<th *ngIf="projectList">Index</th>
+		<th *ngIf="projectList">ID</th>
+		<th *ngIf="projectList">Name</th>
+		<th *ngIf="projectList">Owner</th>
+		<th *ngIf="projectList">Data Created</th>
+		<tr *ngFor="let project of projectList; let i = index">
+			<td>{{ i + 1 }}</td>
+			<td>{{ project.id }}</td>
+			<td>{{ project.name }}</td>
+			<td>{{ project.owner }}</td>
+			<td>{{ project.date_created }}</td>
+		</tr>
+	</table>
+	<br /><hr />
+</div>
+
+<div *ngIf="loginDisplay">
+  <button class="btn" (click)="getUsers()">GET USERS</button>
+  <br /><hr />
+</div>
+
+<div *ngIf="loginDisplay">
+	<button class="btn" (click)="addProject()">ADD NEW PROJECT</button>
+	Project Name: <input type="text" [(value)]="newProjectName" (keyup)="onChangeNewProject($event)" />
+	<br /><hr />
+</div>
+
+<div *ngIf="loginDisplay">
+	<button class="btn" (click)="deleteProjectById()">DELETE PROJECT</button>
+	ID: <input type="text" [(value)]="projectIdToDelete" (keyup)="onChangeProjectIdToDelete($event)" />
+	<br /><hr />
+</div>
+-->
